@@ -95,6 +95,6 @@ workflows:
       - test:
           filters:
             tags:
-              only: /^1.0.*/
+              only: /^main/
             branches:
-              only: /^1.0.x/version: 2.1
+              only: /^main/
