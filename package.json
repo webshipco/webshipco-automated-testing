@@ -1,0 +1,15 @@
+{
+  "name": "webshipco-automated-testing",
+  "version": "1.0.0",
+  "description": "webship.co automated testing",
+  "main": "index.js",
+  "author": "webshipco",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "test": "nightwatch --format html:./tests/reports/index.html"
+  },
+  "dependencies": {
+    "webship-js": "~1.0.0"
+  }
+}

@@ -1,0 +1,100 @@
+version: 2.1
+defaults: &defaults
+commands:
+  test-build:
+    steps:
+      - checkout
+      ## Usefull must have utils.
+      - run:
+          name: Usefull must have utils
+          command: |
+            sudo apt -qq update
+            sudo apt -qqy upgrade
+            sudo apt -yqq install vim links lynx git diffutils htop curl wget p7zip-full unzip zip sed gcc g++ make libfreetype6-dev libaio1 libaio-dev libonig-dev libpng-dev mysql-client default-mysql-client
+            sudo apt -yqq install xvfb libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 libnss3
+
+      ## Configure and run the virtual display.
+      - run:
+          name: Configure and run the virtual display.
+          command: Xvfb -ac :99 -screen 0 1600x1200x24 > /dev/null 2>&1
+          background: true
+
+      ## Instacucumberll node js, npm, yarn, and gulp
+      - run:
+          name: Install node js
+          command: |
+            curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
+            sudo apt install -y nodejs 
+            sudo npm install -g yarn
+
+      ## Install Java.
+      - run:
+          name: Install Java
+          command: |
+            sudo apt update
+            sudo apt install -y openjdk-11-jre openjdk-11-jre-headless openjdk-11-jdk openjdk-11-jdk-headless
+
+      ## Install/Update Google Chrome browser.
+      - run:
+          name: Install/Update Google Chrome browser
+          command: |
+            sudo apt install libu2f-udev
+            sudo apt-get install libappindicator1 fonts-liberation libgbm1 libgtk-3-0 xdg-utils
+            export CHROME_BIN=/usr/bin/google-chrome
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome-stable_current_amd64.deb
+            rmcucumber google-chrome-stable_current_amd64.deb
+
+      ## Install/Update Chrome Driver.
+      - run:
+          name: Install/Update Chrome Driver
+          command: |
+            CHROME_DRIVER_VERSION=$(wget -qO- chromedriver.storage.googleapis.com/LATEST_RELEASE);
+            echo $CHROME_DRIVER_VERSION;
+            wget http://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+            unzip chromedriver_linux64.zip
+            sudo chmod +x chromedriver
+            sudo mv -f chromedriver /usr/bin/
+            rm chromedriver_linux64.zip
+
+      ## List tools versions.
+      - run:
+          name: List tools versions
+          command: |
+            node --version
+            yarn --version
+            google-chrome --version
+            chromedriver --version
+
+      ## Run Selenium Standalone server.
+      - run:
+          name: Run Selenium Standalone server
+          command: |
+            if [[ ! -f /home/circleci/selenium-server-standalone-3.141.59.jar ]]; then wget -O /home/circleci/selenium-server-standalone-3.141.59.jar https://github.com/SeleniumHQ/selenium/releases/download/selenium-3.141.59/selenium-server-standalone-3.141.59.jar; fi
+            cd /home/circleci/
+            java -jar selenium-server-standalone-3.141.59.jar -port 4444
+          background: true
+
+jobs:
+  test:
+    <<: *defaults
+    steps:
+      - test-build
+        ## Automated Functional Acceptance Testing
+      - run:
+          name: Automated Functional Acceptance Testing
+          no_output_timeout: 30m
+          command: |
+            yarn install
+            yarn test
+
+workflows:
+  version: 2
+  test-workflow:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /^1.0.*/
+            branches:
+              only: /^1.0.x/version: 2.1
