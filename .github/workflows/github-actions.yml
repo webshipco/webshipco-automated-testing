@@ -8,21 +8,24 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      TEST_BASE_URL: https://webship.co
+      TEST_BASE_URL: https://webship.co/
       SELENIUM_HOST: http://selenium:4444/wd/hub
 
-    services:
-      selenium:
-        image: selenium/standalone-chrome
-        # options: --health-cmd "curl http://selenium:4444" --health-interval=5s
-        ports: 
-          - 4444:4444
-
     steps:
+      - name: Install Chrome
+        run: |
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb
       - uses: actions/checkout@v3
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
-      - run: yarn install
-      - run: yarn test
+      - name: Install
+        run: yarn install
+      - name: Configure nightwatch.conf.js for Github
+        run: node webship-init -ci github -os linux -b chrome
+      - name: Start
+        run: yarn start &
+      - name: Test
+        run: yarn test
