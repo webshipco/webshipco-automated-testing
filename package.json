@@ -14,5 +14,11 @@
   "homepage": "https://github.com/webship/webship-js",
   "dependencies": {
     "webship-js": "~1.0.0"
+  },
+  "devDependencies": {
+    "chromedriver": "*",
+    "geckodriver": "*",
+    "webpack-cli": "~5.0",
+    "webpack-dev-server": "~4.0"
   }
 }
