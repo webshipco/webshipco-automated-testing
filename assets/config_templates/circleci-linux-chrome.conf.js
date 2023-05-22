@@ -3,13 +3,13 @@ const Services = {}; loadServices();
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['tests/step-definitions'],
+  src_folders: ['node_modules/webship-js/tests/step-definitions','tests/step-definitions'],
 
-   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
-   custom_commands_path: './lib/custom-commands',
+  // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
+  custom_commands_path: './node_modules/webship-js/lib/custom-commands',
 
-   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-   custom_assertions_path: './lib/custom-assertions',
+  // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
+  custom_assertions_path: './node_modules/webship-js/lib/custom-assertions',
 
   test_runner: {
     type: 'cucumber',
