@@ -4,7 +4,8 @@ Feature: Check the home page
   So that I know that the webship.co site is working
 
   Scenario: Check contactpage
-    Given I am on "contact"
+    Given I am on the homepage 
+    When I go to "contact"
     Then I should see "Contact"
 
  # Check the box information
