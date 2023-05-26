@@ -12,6 +12,6 @@ Feature: Check the home page
     And I should see "Your Name"
     And I should see "Business email"
     And I should see "Your message"
-    And I should see text matching "Submit"
+    And I should see "#edit-actions-submit"
     And I should see "info@webship.co"
     And I should see "Location map"
