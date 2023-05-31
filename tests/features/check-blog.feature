@@ -1,16 +1,13 @@
-Feature: Check the about us page
+Feature: Check the blog page
   As a nonymouse user
-  I want to be able to visit the about us page
+  I want to be able to visit the blog page
   So that I know that the webship.co site is working
 
-  Scenario: Check aboutuspage
+  Scenario: Check blog
     Given I am on the homepage 
-    When I go to "about-us"
-    Then I should see "About us"
+    When I go to "blog"
+    Then I should see "Blog"
 
- # Check the box information
-    And I should see "Love to help in speeding up the work of having Automated Functional Acceptance Testing for products to ship websites in a swift way."
-    And I should see "We LOVE to help with:"
 
  # Check the header on the homepage
     And I should see "Services"

@@ -1,19 +1,23 @@
-Feature: Check the home page
+Feature: Check the privacy page
   As a nonymouse user
-  I want to be able to visit the contact page
+  I want to be able to visit the privacy page
   So that I know that the webship.co site is working
 
-  Scenario: Check contactpage
+  Scenario: Check privacy
     Given I am on the homepage 
-    When I go to "contact"
-    Then I should see "Contact"
+    When I go to "privacy-policy"
+    Then I should see "Privacy Policy"
 
- # Check the box information
-    And I should see "Your Name"
-    And I should see "Business email"
-    And I should see "Your message"
-    And I should see "info@webship.co"
-    And I should see "Location map"
+    # Check the box information
+    And I should see "Data Collected"
+    And I should see "Use of the Data"
+    And I should see "Sharing of Data"
+    And I should see "Cookies"
+    And I should see "Opt-Out, Communication Preferences"
+    And I should see "Security"
+    And I should see "About Children"
+    And I should see "Changes to the Privacy Policy"
+
 
  # Check the header on the homepage
     And I should see "Services"
