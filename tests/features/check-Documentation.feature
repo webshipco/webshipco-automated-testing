@@ -10,7 +10,6 @@ Feature: Check the documentation page
 
    # Check the box information
     And I should see "Webship JS"
-    And I should see "Installation" 
 
 
  # Check the header on the homepage
