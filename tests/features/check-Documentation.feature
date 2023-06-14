@@ -12,13 +12,13 @@ Feature: Check the documentation page
     And I should see "Webship JS"
 
 
- # Check the header on the homepage
+ # Check the header on the documentation page
     And I should see "Services"
     And I should see "Documentation"
     And I should see "Blog"
     And I should see "Log in"
     
- # Check the footer on the homepage
+ # Check the footer on the documentation page
     And I should see "Contact"
     And I should see "About us"
     And I should see "© Copyright 2023 Webship"

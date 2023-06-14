@@ -4,11 +4,11 @@ Feature: Check the contact page
   So that I know that the webship.co site is working
 
   Scenario: Check contact
-    Given I am on the homepage 
+    Given I am on the homepage
     When I go to "contact"
     Then I should see "Contact"
 
- # Check the box information
+    # Check the box information
     And I should see "Your Name"
     And I should see "Company name"
     And I should see "Business email"
@@ -19,13 +19,13 @@ Feature: Check the contact page
     And I should see "info@webship.co"
     And I should see "Location map"
 
- # Check the header on the homepage
+    # Check the header on the contact page
     And I should see "Services"
     And I should see "Documentation"
     And I should see "Blog"
     And I should see "Log in"
-    
- # Check the footer on the homepage
+
+    # Check the footer on the contact page
     And I should see "Contact"
     And I should see "About us"
     And I should see "© Copyright 2023 Webship"
@@ -35,3 +35,13 @@ Feature: Check the contact page
     And I should see "Twitter"
     And I should see "Linkedin"
     And I should see "Youtube"
+
+    # Check the newsletter text
+    And I fill in "Your Name" with "Winn Spowage"
+    And I fill in "Company name" with "Okuneva, Prosacco and Champlin"
+    And I fill in "Business email" with "wspowage5@sourceforge.net"
+    And I fill in "Phone number" with "+212 (367) 487-7851"
+    And I fill in "Team size" with "11"
+    And I fill in "Job title" with "Administrative Assistant II"
+    And I fill in "Your message" with "This is just a automated testing for webship.co site"
+    And I press "Submit"

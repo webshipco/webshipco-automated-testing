@@ -4,18 +4,18 @@ Feature: Check the blog page
   So that I know that the webship.co site is working
 
   Scenario: Check blog
-    Given I am on the homepage 
+    Given I am on the homepage
     When I go to "blog"
     Then I should see "Blog"
 
 
- # Check the header on the homepage
+    # Check the header on the blog page
     And I should see "Services"
     And I should see "Documentation"
     And I should see "Blog"
     And I should see "Log in"
-    
- # Check the footer on the homepage
+
+    # Check the footer on the blog page
     And I should see "Contact"
     And I should see "About us"
     And I should see "© Copyright 2023 Webship"

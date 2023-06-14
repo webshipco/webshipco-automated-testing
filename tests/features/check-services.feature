@@ -1,24 +1,29 @@
-Feature: Check the about us page
+Feature: Check the Services page
   As a nonymouse user
-  I want to be able to visit the about us page
+  I want to be able to visit the services page
   So that I know that the webship.co site is working
 
-  Scenario: Check about us
+  Scenario: Check services
     Given I am on the homepage
-    When I go to "about-us"
-    Then I should see "About us"
+    When I go to "services"
+    Then I should see "Services"
 
     # Check the box information
-    And I should see "Love to help in speeding up the work of having Automated Functional Acceptance Testing for products to ship websites in a swift way."
-    And I should see "We LOVE to help with:"
+    And I should see "Automated Functional Testing Setup"
+    And I should see "Setup Private Selenium Grid"
+    And I should see "Configure Remote CI/CD"
+    And I should see "Cucumber/Gherkin descriptions"
+    And I should see "Starting from $1,000"
+    And I should see "Starting from $3,000"
 
-    # Check the header on the  about us page
+
+    # Check the header on the services page
     And I should see "Services"
     And I should see "Documentation"
     And I should see "Blog"
     And I should see "Log in"
 
-    # Check the footer on the  about us page
+    # Check the footer on the services page
     And I should see "Contact"
     And I should see "About us"
     And I should see "© Copyright 2023 Webship"
