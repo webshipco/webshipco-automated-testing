@@ -10,6 +10,7 @@ Feature: Check the documentation page
 
    # Check the box information
     And I should see "Webship JS"
+    And I should see "Integrations"
 
 
  # Check the header on the documentation page
