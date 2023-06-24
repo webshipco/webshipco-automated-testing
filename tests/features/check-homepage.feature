@@ -28,5 +28,5 @@ Feature: Check the home page
     # Check the newsletter text
     And I fill in "Name" with "Winn Spowage"
     And I fill in "Email" with "wspowage5@sourceforge.net"
-    And I press "Subscribe"
-    And I should see "Thank you for joining us."
+    When I press "Subscribe"
+    Then I should see "Thank you for joining us."
