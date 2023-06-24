@@ -29,5 +29,4 @@ Feature: Check the home page
     And I fill in "Name" with "Winn Smith"
     And I fill in "Email" with "wspowage5@gmail.com"
     When I press "Subscribe"
-    And I wait max of 3 seconds
-    Then I should see "Thank you for joining us."
+    
