@@ -1,11 +1,10 @@
 Feature: Check the privacy page
-  As a nonymouse user
+  As an anonymous user
   I want to be able to visit the privacy page
   So that I know that the webship.co site is working
 
   Scenario: Check privacy
-    Given I am on the homepage
-    When I go to "privacy-policy"
+    Given I am on "privacy-policy"
     Then I should see "Privacy Policy"
 
     # Check the box information

@@ -1,11 +1,10 @@
 Feature: Check the contact page
-  As a nonymouse user
+  As an anonymous user
   I want to be able to visit the contact page
   So that I know that the webship.co site is working
 
   Scenario: Check contact
-    Given I am on the homepage
-    When I go to "contact"
+    Given I am on "contact"
     Then I should see "Contact"
 
     # Check the box information
@@ -37,11 +36,11 @@ Feature: Check the contact page
     And I should see "Youtube"
 
     # Check the newsletter text
-    And I fill in "Your Name" with "Winn Spowage"
-    And I fill in "Company name" with "Okuneva, Prosacco and Champlin"
-    And I fill in "Business email" with "wspowage5@sourceforge.net"
+    And I fill in "Your Name" with "Jon Smith"
+    And I fill in "Company name" with "Webship.co"
+    And I fill in "Business email" with "tast@webship.co"
     And I fill in "Phone number" with "+212 (367) 487-7851"
     And I fill in "Team size" with "11"
     And I fill in "Job title" with "Administrative Assistant II"
-    And I fill in "Your message" with "This is just a automated testing for webship.co site"
+    And I fill in "Your message" with "This is just an automated testing for webship.co site"
     And I press "Submit"

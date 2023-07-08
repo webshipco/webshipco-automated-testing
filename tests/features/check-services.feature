@@ -1,11 +1,10 @@
 Feature: Check the Services page
-  As a nonymouse user
+  As an anonymous user
   I want to be able to visit the services page
   So that I know that the webship.co site is working
 
   Scenario: Check services
-    Given I am on the homepage
-    When I go to "services"
+    Given I am on "services"
     Then I should see "Services"
 
     # Check the box information

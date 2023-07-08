@@ -1,5 +1,5 @@
 Feature: Check the home page
-  As a nonymouse user
+  As an anonymous user
   I want to be able to visit the home page
   So that I know that the webship.co site is working
 
