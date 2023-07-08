@@ -4,7 +4,7 @@ Feature: Check the privacy page
   So that I know that the webship.co site is working
 
   Scenario: Check privacy
-    Given I am on "privacy-policy"
+    Given I am on "/privacy-policy"
     Then I should see "Privacy Policy"
 
     # Check the box information

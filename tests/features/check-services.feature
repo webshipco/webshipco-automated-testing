@@ -4,7 +4,7 @@ Feature: Check the Services page
   So that I know that the webship.co site is working
 
   Scenario: Check services
-    Given I am on "services"
+    Given I am on "/services"
     Then I should see "Services"
 
     # Check the box information

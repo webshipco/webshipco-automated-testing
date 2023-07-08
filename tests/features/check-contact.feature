@@ -4,7 +4,7 @@ Feature: Check the contact page
   So that I know that the webship.co site is working
 
   Scenario: Check contact
-    Given I am on "contact"
+    Given I am on "/contact"
     Then I should see "Contact"
 
     # Check the box information
