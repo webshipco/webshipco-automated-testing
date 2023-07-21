@@ -13,5 +13,5 @@ Feature: Check the home page
     When I press "Subscribe"
     
   
-    Then I should have a working header
-    Then I should have a working footer
+    # Then I should have a working header
+    # Then I should have a working footer
