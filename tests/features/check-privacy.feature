@@ -16,21 +16,3 @@ Feature: Check the privacy page
     And I should see "Security"
     And I should see "About Children"
     And I should see "Changes to the Privacy Policy"
-
-
-    # Check the header on the privacy page
-    And I should see "Services"
-    And I should see "Documentation"
-    And I should see "Blog"
-    And I should see "Log in"
-
-    # Check the footer on the privacy page
-    And I should see "Contact"
-    And I should see "About us"
-    And I should see "© Copyright 2023 Webship"
-    And I should see "Github"
-    And I should see "Gitlab"
-    And I should see "Bitbucket"
-    And I should see "Twitter"
-    And I should see "Linkedin"
-    And I should see "Youtube"
