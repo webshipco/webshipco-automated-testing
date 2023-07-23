@@ -8,7 +8,6 @@ Feature: Check the home page
     Then I should see "Love to help in speeding up the work of having Automated Functional Acceptance Testing for products to ship websites in a swift way."
 
     # Check the newsletter text
-    And I fill in "Name" with "Winn Smith"
     And I fill in "Email" with "wspowage5@gmail.com"
     When I press "Subscribe"
     
