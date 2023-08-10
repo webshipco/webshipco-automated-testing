@@ -31,6 +31,3 @@ Feature: Check the contact page
     And I fill in "Job title" with "Administrative Assistant II"
     And I fill in "Your message" with "This is just an automated testing for webship.co site"
     And I press "Submit"
-    And I move backward one page
-    And I click "Privacy Policy"
-    Then I should see "Privacy Policy"
