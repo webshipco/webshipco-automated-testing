@@ -6,7 +6,7 @@ module.exports = {
   src_folders: ['node_modules/webship-js/tests/step-definitions','tests/step-definitions'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
-  custom_commands_path: './node_modules/webship-js/lib/custom-commands',
+  custom_commands_path: ['./node_modules/webship-js/lib/custom-commands','./lib/custom-commands'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
   custom_assertions_path: './node_modules/webship-js/lib/custom-assertions',
@@ -24,7 +24,8 @@ module.exports = {
     default: {
       launch_url: 'https://webship.co',
       selenium_port: 4444,
-      selenium_host: '127.0.0.1',
+      //selenium_host: '127.0.0.1',
+      selenium_host: '192.168.0.105',
       silent: true,
       screenshots: {
         enabled: true,
@@ -39,7 +40,7 @@ module.exports = {
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: false,
           args: [
-            '--headless',
+            //'--headless',
             '--start-maximized',
             '--disable-gpu',
             '--window-size=1600,1200',

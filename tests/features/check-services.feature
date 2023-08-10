@@ -6,15 +6,18 @@ Feature: Check the Services page
   Scenario: Check services
     Given I am on "/services"
     Then I should see "Services"
+    And I should have a working header
+    And I should have a working footer
 
-    # Check the box information
-    And I should see "Automated Functional Testing Setup"
+  Scenario: Check services info
+    Given I am on "/services"
+    Then I should see "Automated Functional Testing Setup"
     And I should see "Setup Private Selenium Grid"
     And I should see "Configure Remote CI/CD"
     And I should see "Cucumber/Gherkin descriptions"
 
-    # Check the link 
-    # And I should see a "testing_setup" element
+  Scenario: Check the link
+    Given I am on "/services"
     When I click "contactus"
     Then I should see "Contact"
     When I move backward one page

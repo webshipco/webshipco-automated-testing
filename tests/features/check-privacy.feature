@@ -6,9 +6,12 @@ Feature: Check the privacy page
   Scenario: Check privacy
     Given I am on "/privacy-policy"
     Then I should see "Privacy Policy"
+    And I should have a working header
+    And I should have a working footer
 
-    # Check the box information
-    And I should see "Data Collected"
+  Scenario: Check the box information
+    Given I am on "/privacy-policy"
+    Then I should see "Data Collected"
     And I should see "Use of the Data"
     And I should see "Sharing of Data"
     And I should see "Cookies"
