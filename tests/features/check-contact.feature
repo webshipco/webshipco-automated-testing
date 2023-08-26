@@ -27,7 +27,7 @@ Feature: Check the contact page
     And I fill in "Company name" with "Webship.co"
     And I fill in "Business email" with "tast@webship.co"
     And I fill in "Phone number" with "+212 (367) 487-7851"
-    And I fill in "Team size" with "11"
+    And I select "11-50 employees" from "Team Size"
     And I fill in "Job title" with "Administrative Assistant II"
     And I fill in "Your message" with "This is just an automated testing for webship.co site"
     And I press "Submit"
