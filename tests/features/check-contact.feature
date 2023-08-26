@@ -15,7 +15,7 @@ Feature: Check the contact page
     And I should see "Company name"
     And I should see "Business email"
     And I should see "Phone number"
-    And I should see "Team size"
+    And I should see "Team Size"
     And I should see "Job title"
     And I should see "Your message"
     And I should see "info@webship.co"
