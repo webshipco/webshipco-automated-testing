@@ -7,9 +7,7 @@ Feature: Check the privacy page
     Given I am on "/privacy-policy"
      Then I should see "Privacy Policy"
       And I should have a working header
-      And I wait max of 3 minute
       And I should have a working footer
-      And I wait max of 3 minute
 
   Scenario: Check the box information
     Given I am on "/privacy-policy"

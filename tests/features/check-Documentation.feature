@@ -7,9 +7,7 @@ Feature: Check the documentation page
     Given I am on "/documentation"
      Then I should see "Documentation"
       And I should have a working header
-      And I wait max of 3 minute
       And I should have a working footer
-      And I wait max of 3 minute
 
   Scenario: Check the box information
     Given I am on "/documentation"

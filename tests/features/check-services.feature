@@ -7,9 +7,7 @@ Feature: Check the Services page
     Given I am on "/services"
      Then I should see "Services"
       And I should have a working header
-      And I wait max of 3 minute
       And I should have a working footer
-      And I wait max of 3 minute
 
   Scenario: Check services info
     Given I am on "/services"
