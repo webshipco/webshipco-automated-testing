@@ -5,11 +5,11 @@ Feature: Check the documentation page
 
   Scenario: Check documentation
     Given I am on "/documentation"
-    Then I should see "Documentation"
-    And I should have a working header
-    And I should have a working footer
+     Then I should see "Documentation"
+      And I should have a working header
+      And I should have a working footer
 
   Scenario: Check the box information
     Given I am on "/documentation"
-    And I should see "Webship JS"
-    And I should see "Integrations"
+     Then I should see "Webship JS"
+      And I should see "Integrations"
