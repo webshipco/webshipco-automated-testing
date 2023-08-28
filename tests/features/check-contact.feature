@@ -7,7 +7,9 @@ Feature: Check the contact page
     Given I am on "/contact"
      Then I should see "Contact"
       And I should have a working header
+      And I wait max of 3 minute
       And I should have a working footer
+      And I wait max of 3 minute
 
   Scenario: Check the box information
     Given I am on "/contact"

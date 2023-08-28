@@ -7,7 +7,9 @@ Feature: Check the home page
     Given I am on the homepage
      Then I should see "Love to help in speeding up the work of having Automated Functional Acceptance Testing for products to ship websites in a swift way."
       And I should have a working header
+      And I wait max of 3 minute
       And I should have a working footer
+      And I wait max of 3 minute
 
   Scenario: Check newsletter in homepage
     Given I am on the homepage

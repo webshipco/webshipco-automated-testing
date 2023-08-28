@@ -7,7 +7,9 @@ Feature: Check the about us page
     Given I am on "/about-us"
      Then I should see "About us"
       And I should have a working header
+      And I wait max of 3 minute
       And I should have a working footer
+      And I wait max of 3 minute
 
   Scenario: Check the box information
     Given I am on "/about-us"
