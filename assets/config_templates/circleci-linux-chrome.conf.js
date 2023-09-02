@@ -6,23 +6,23 @@ module.exports = {
   src_folders: ['node_modules/webship-js/tests/step-definitions','tests/step-definitions'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
-  custom_commands_path: './node_modules/webship-js/lib/custom-commands',
+  custom_commands_path: ['./node_modules/webship-js/lib/custom-commands','./lib/custom-commands'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-  custom_assertions_path: './node_modules/webship-js/lib/custom-assertions',
+  custom_assertions_path: ['./node_modules/webship-js/lib/custom-assertions','./lib/custom-assertions'],
 
   test_runner: {
     type: 'cucumber',
     options: {
       feature_path: 'tests/features/*.feature',
       additional_config: '',
-      parallel: 2,
+      parallel: 1,
     },
   },
 
   test_settings: {
     default: {
-      launch_url: 'https://webship.co/',
+      launch_url: 'https://webship.co',
       selenium_port: 4444,
       selenium_host: '127.0.0.1',
       silent: true,
@@ -91,13 +91,13 @@ module.exports = {
 function loadServices() {
   try {
     Services.seleniumServer = require('selenium-server');
-  } catch (err) {}
+  } catch (err) { }
 
   try {
     Services.chromedriver = require('chromedriver');
-  } catch (err) {}
+  } catch (err) { }
 
   try {
     Services.geckodriver = require('geckodriver');
-  } catch (err) {}
+  } catch (err) { }
 }
