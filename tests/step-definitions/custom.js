@@ -1,5 +1,3 @@
-const {Given} = require('@cucumber/cucumber');
-const {When, Before} = require('@cucumber/cucumber');
 const {Then} = require('@cucumber/cucumber');
 
 /**
@@ -8,7 +6,7 @@ const {Then} = require('@cucumber/cucumber');
 */
 
 Then(/^I should have a working header$/, function () {
-   browser.haveWorkingHeader();
+   browser.assert.haveWorkingHeader();
 });
 
 /**
@@ -17,5 +15,5 @@ Then(/^I should have a working header$/, function () {
 */
 
 Then(/^I should have a working footer$/, function () {
-   browser.haveWorkingFooter();
+   browser.assert.haveWorkingFooter();
 });

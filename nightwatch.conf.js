@@ -9,7 +9,7 @@ module.exports = {
   custom_commands_path: ['./node_modules/webship-js/lib/custom-commands','./lib/custom-commands'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-  custom_assertions_path: './node_modules/webship-js/lib/custom-assertions',
+  custom_assertions_path: ['./node_modules/webship-js/lib/custom-assertions','./lib/custom-assertions'],
 
   test_runner: {
     type: 'cucumber',
