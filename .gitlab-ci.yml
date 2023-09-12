@@ -16,6 +16,7 @@ e2e:chrome:
   services:
     - selenium/standalone-chrome:3.13
   script:
-    - npm install
-    - npm run confidence-check --host=selenium__standalone-chrome
-    - npm test
+    - yarn install
+    - if [[ $CI_COMMIT_REF_NAME == $BRANCH_IN_MAINTENANCE ]]; then echo 'Running checks in maintenance mode.'; export MAINTENANCE_MODE=true; fi;
+    - yarn run confidence-check --host=selenium__standalone-chrome
+    - yarn test
