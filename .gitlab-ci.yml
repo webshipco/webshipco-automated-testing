@@ -11,4 +11,5 @@ e2e:chrome:
     - selenium/standalone-chrome
   script:
     - yarn install
+    - yarn run --host=selenium__standalone-chrome
     - yarn test
