@@ -16,5 +16,6 @@ e2e:chrome:
   services:
     - selenium/standalone-chrome:3.13
   script:
-    - yarn install --save-dev selenium-webdriver
+    - yarn install
+    - yarn add selenium-webdriver --dev
     - yarn test
