@@ -5,6 +5,12 @@ stages:
   - deploy
   - confidence-check
 
+deploy_terraform:
+  stage: deploy
+  script:
+    - echo
+  environment: production
+
 e2e:chrome:
   stage: confidence-check
   services:
