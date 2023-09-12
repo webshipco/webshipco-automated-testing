@@ -16,5 +16,6 @@ e2e:chrome:
   services:
     - selenium/standalone-chrome
   script:
+    - npm install
     - npm run confidence-check --host=selenium__standalone-chrome
     - npm test
