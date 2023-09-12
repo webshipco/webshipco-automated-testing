@@ -14,7 +14,7 @@ deploy_terraform:
 e2e:chrome:
   stage: confidence-check
   services:
-    - selenium/standalone-chrome
+    - selenium/standalone-chrome:15
   script:
     - npm install
     - npm run confidence-check --host=selenium__standalone-chrome
