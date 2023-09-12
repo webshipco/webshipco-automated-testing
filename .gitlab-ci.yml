@@ -1,7 +1,15 @@
- image: node:18
+default:
+  image: node:16
+
+stages:
+  - deploy
+  - confidence-check
+
+e2e:chrome:
+  stage: confidence-check
   services:
     - selenium/standalone-chrome
-  stage: test
   script:
-    - yarn install 
+    - yarn install
+    - yarn run confidence-check --host=selenium__standalone-chrome
     - yarn test
