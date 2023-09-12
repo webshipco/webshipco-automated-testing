@@ -11,5 +11,5 @@ e2e:chrome:
     - selenium/standalone-chrome
   script:
     - yarn install
-    - yarn run confidence-check --host=selenium__standalone-chrome
+    - yarn run host=selenium__standalone-chrome
     - yarn test
