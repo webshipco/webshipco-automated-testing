@@ -16,5 +16,5 @@ e2e:chrome:
   services:
     - selenium/standalone-chrome:3.13
   script:
-    - yarn install -save-dev mocha chai mocha-junit-reporter
+    - yarn install --save-dev selenium-webdriver
     - yarn test
