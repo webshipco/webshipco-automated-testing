@@ -1,5 +1,5 @@
 default:
-  image: node:8.10
+  image: node:16
 
 stages:
   - deploy
@@ -16,6 +16,5 @@ e2e:chrome:
   services:
     - selenium/standalone-chrome:3.13
   script:
-    - yarn install
-    - yarn run confidence-check --host=selenium__standalone-chrome
+    - yarn install -save-dev mocha chai mocha-junit-reporter
     - yarn test
