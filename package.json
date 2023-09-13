@@ -16,6 +16,7 @@
     "webship-js": "^1.0.22"
   },
   "devDependencies": {
+    "@wdio/cli": "^7.9.1",
     "chromedriver": "*",
     "geckodriver": "*",
     "webpack-cli": "~5.0",
