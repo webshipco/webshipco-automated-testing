@@ -6,10 +6,10 @@
   "author": "Webship.co",
   "license": "MIT",
   "private": false,
-  "confidence-check": "wdio wdio.conf.js",
   "scripts": {
     "test": "nightwatch --format @cucumber/pretty-formatter --format-options '{\"colorsEnabled\": true}' --format-options '{\"theme\": {\"feature keyword\":[\"bold\",\"blue\"],\"feature name\":[\"blue\",\"underline\"],\"feature description\":[\"blueBright\"],\"scenario keyword\":[\"bold\",\"magenta\"],\"scenario name\":[\"magenta\",\"underline\"],\"step keyword\":[\"bold\",\"green\"],\"step text\":[\"greenBright\",\"italic\"]}}' --format json:./tests/reports/cucumber_report.json; node generate-reports.js;",
-    "lint:js": "node ./node_modules/eslint/bin/eslint.js --config=.eslintrc.json ."
+    "lint:js": "node ./node_modules/eslint/bin/eslint.js --config=.eslintrc.json .",
+    "confidence-check": "wdio wdio.conf.js"
   },
   "homepage": "https://github.com/webship/webship-js",
   "dependencies": {
@@ -20,6 +20,7 @@
     "geckodriver": "*",
     "webpack-cli": "~5.0",
     "webpack-dev-server": "~4.0",
+  "confidence-check": "wdio wdio.conf.js",
     "cucumber-html-reporter": "^7.1.0"
   }
 }
