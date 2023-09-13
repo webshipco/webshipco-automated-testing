@@ -19,7 +19,6 @@
     "geckodriver": "*",
     "webpack-cli": "~5.0",
     "webpack-dev-server": "~4.0",
-    "confidence-check": "wdio wdio.conf.js",
     "cucumber-html-reporter": "^7.1.0"
   }
 }
