@@ -19,5 +19,5 @@ e2e:chrome:
     - yarn install
     - yarn add webdriverio --dev
     - yarn add -D @wdio/cli
-    - yarn confidence-check --host=selenium__standalone-chrome
+    - yarn run confidence-check --host=selenium__standalone-chrome
     - yarn test
