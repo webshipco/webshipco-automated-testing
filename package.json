@@ -27,11 +27,7 @@
     "geckodriver": "*",
     "webpack-cli": "~5.0",
     "webpack-dev-server": "~4.0",
-    "cucumber-html-reporter": "^7.1.0",
-    "@wdio-chromedriver-service": "^7.2.0",
-    "@wdio-jasmine-framework": "^0.3.6",
-    "@wdio-json-reporter": "^0.3.1",
-    "@webdriverio": "^4.13.2"
+    "cucumber-html-reporter": "^7.1.0"
 
   }
 }
