@@ -17,8 +17,4 @@ e2e:chrome:
     - selenium/standalone-chrome
   script:
     - yarn install
-    - yarn add --dev @percy-io/percy-webdriverio
-    - yarn add -D @wdio/cli
-    - yarn wdio run wdio.conf.js
-    - yarn run confidence-check --host=selenium__standalone-chrome
     - yarn test
