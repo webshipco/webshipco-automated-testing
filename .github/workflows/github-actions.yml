@@ -28,3 +28,4 @@ jobs:
         run: node webship-init -ci github -os linux -b chrome
       - name: Test
         run: yarn test
+        
