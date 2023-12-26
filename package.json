@@ -13,14 +13,6 @@
   },
   "homepage": "https://github.com/webship/webship-js",
   "dependencies": {
-    "webship-js": "^1.0.22"
-  },
-  "devDependencies": {
-    "chromedriver": "*",
-    "geckodriver": "*",
-    "webpack-cli": "~5.0",
-    "webpack-dev-server": "~4.0",
-    "cucumber-html-reporter": "^7.1.0"
-
+    "webship-js": "~1"
   }
 }
