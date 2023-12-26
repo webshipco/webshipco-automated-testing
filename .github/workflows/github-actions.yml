@@ -14,21 +14,25 @@ jobs:
     steps:
       - name: Install Chrome
         run: |
-         sudo apt install libu2f-udev
-            sudo apt-get install libappindicator1 fonts-liberation libgbm1 libgtk-3-0 xdg-utils
-            export CHROME_BIN=/usr/bin/google-chrome
-            CHROME_VERSION="120.0.6099.109-1"
-            wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}_amd64.deb
-            sudo dpkg -i google-chrome-stable_${CHROME_VERSION}_amd64.deb
-            rm google-chrome-stable_${CHROME_VERSION}_amd64.deb
+          sudo apt install libu2f-udev
+          sudo apt-get install libappindicator1 fonts-liberation libgbm1 libgtk-3-0 xdg-utils
+          export CHROME_BIN=/usr/bin/google-chrome
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt-get clean
+          sudo apt-get update
+          sudo apt-get install dpkg
+          sudo dpkg -i google-chrome-stable_current_amd64.deb
+          rm google-chrome-stable_current_amd64.deb
+          google-chrome --version
       - name: Install/Update Chrome Driver
         run: |
-          CHROME_DRIVER_VERSION="114.0.5735.90";
+          CHROME_DRIVER_VERSION=$(wget -qO- chromedriver.storage.googleapis.com/LATEST_RELEASE);
           echo $CHROME_DRIVER_VERSION;
           wget http://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
-          sudo chmod +x chromedriver
-          sudo mv -f chromedriver /usr/bin/
+          chmod +x chromedriver
+          mkdir -p $HOME/.composer/vendor/bin
+          mv -f chromedriver $HOME/.composer/vendor/bin/
           rm chromedriver_linux64.zip
 
       - uses: actions/checkout@v3
