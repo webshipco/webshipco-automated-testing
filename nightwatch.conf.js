@@ -26,6 +26,7 @@ module.exports = {
       selenium_port: 4444,
       selenium_host: '127.0.0.1',
       silent: true,
+      start_process: true,
       screenshots: {
         enabled: true,
         path: './reports/screenshots',
