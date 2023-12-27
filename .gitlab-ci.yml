@@ -12,10 +12,10 @@ deploy_terraform:
   environment: production
   
 e2e:chrome:
-  stage: Test TestingBot
-  before_script:
-    - npm install
-    - npm install selenium-webdriver
+  sstage: confidence-check
+  services:
+    - selenium/standalone-chrome
   script:
+    - npm run confidence-check --host=selenium__standalone-chrome
     - yarn install
     - yarn test
