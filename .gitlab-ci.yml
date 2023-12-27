@@ -5,10 +5,15 @@ stages:
 
 before_script:
   - apt-get update -qq
-  - apt-get install -yqq libnss3 libgconf-2-4 xvfb
+  - apt-get install -y wget gnupg2 unzip
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - apt install -y ./google-chrome-stable_current_amd64.deb
+  - rm google-chrome-stable_current_amd64.deb
+  - wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - mv chromedriver /usr/bin/chromedriver
+  - chmod +x /usr/bin/chromedriver
   - npm install
-  - wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.1.0/selenium-server-4.1.2.jar
-  - java -jar selenium-server-4.1.2.jar standalone
 
 test:
   stage: test
@@ -16,4 +21,5 @@ test:
     - Xvfb :99 &
     - export DISPLAY=:99
     - yarn install
+    - node webship-init -ci github -os linux -b chrome
     - yarn test
