@@ -25,6 +25,7 @@ module.exports = {
       launch_url: 'https://webship.co',
       selenium_port: 4444,
       selenium_host: '127.0.0.1',
+      start_process: true,
       silent: true,
       screenshots: {
         enabled: true,
