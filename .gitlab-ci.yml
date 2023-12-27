@@ -12,7 +12,7 @@ deploy_terraform:
   environment: production
   
 e2e:chrome:
-  sstage: confidence-check
+  stage: confidence-check
   services:
     - selenium/standalone-chrome
   script:
