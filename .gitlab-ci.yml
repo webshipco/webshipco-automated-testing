@@ -7,8 +7,8 @@ before_script:
   - apt-get update -qq
   - apt-get install -yqq libnss3 libgconf-2-4 xvfb
   - npm install
-  - npm install selenium-webdriver --save-dev
-  - java -jar selenium-server-standalone-{VERSION}.jar
+  - wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.1.0/selenium-server-4.1.2.jar
+  - java -jar selenium-server-4.1.2.jar standalone
 
 test:
   stage: test
