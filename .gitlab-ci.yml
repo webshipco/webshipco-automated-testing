@@ -14,8 +14,32 @@ deploy_terraform:
 e2e:chrome:
   stage: confidence-check
   services:
-    - selenium/standalone-chrome
+  seleniumhub:
+    container_name: seleniumhub
+    image: selenium/hub
+    ports:
+     - "4444:4444"
+
+  chromenode:
+    container_name: chromenode
+    image: selenium/node-chrome-debug
+    ports:
+      - 4578
+    links:
+      - seleniumhub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=seleniumhub
+      - HUB_PORT_4444_TCP_PORT=4444
+    extra_hosts:
+      - "app.mywebapp.com:172.20.129.2"
+    volumes:
+      - /dev/shm:/dev/shm
+
+networks:
+  default:
+    external:
+      name: build_static-network
+test:
   script:
-    - npm run confidence-check --host=selenium__standalone-chrome
     - yarn install
     - yarn test
