@@ -4,24 +4,13 @@ default:
 stages:
   - test
 
-serenity:
-  stage: test
-  image: node:lts
-  services:
-    - selenium/standalone-chrome
-  script:
-    - apt-get update && apt-get install default-jre -y
-    - npm ci
-
-    # configure your tests to use Selenium Grid at
-    # selenium__standalone-chrome:4444
-    - npm test
-  artifacts:
-    when: always
-    paths:
-      - target
-      
 test:
+  stage: test
   script:
+    - apt-get update && apt-get install -y libnss3 libgconf-2-4
+    - apt-get install -y default-jdk
+    - npm install
+    - Xvfb :99 &
+    - export DISPLAY=:99
     - yarn install
     - yarn test
