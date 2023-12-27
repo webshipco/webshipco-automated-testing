@@ -2,42 +2,25 @@ default:
   image: node:18
 
 stages:
-  - deploy
-  - confidence-check
-deploy_terraform:
-  stage: deploy
+  - test
+
+serenity:
+  stage: test
+  image: node:lts
+  services:
+    - selenium/standalone-chrome
   script:
-    # Your Review App deployment scripts - for a working example please check https://gitlab.com/Flockademic/Flockademic/blob/5a45f1c2412e93810fab50e2dab8949e2d0633c7/.gitlab-ci.yml#L315
-    - echo
-  environment: production
-  
-e2e:
-services:
-  seleniumhub:
-    container_name: seleniumhub
-    image: selenium/hub
-    ports:
-     - "4444:4444"
+    - apt-get update && apt-get install default-jre -y
+    - npm ci
 
-  chromenode:
-    container_name: chromenode
-    image: selenium/node-chrome-debug
-    ports:
-      - 4578
-    links:
-      - seleniumhub
-    environment:
-      - HUB_PORT_4444_TCP_ADDR=seleniumhub
-      - HUB_PORT_4444_TCP_PORT=4444
-    extra_hosts:
-      - "app.mywebapp.com:172.20.129.2"
-    volumes:
-      - /dev/shm:/dev/shm
-
-networks:
-  default:
-    external:
-      name: build_static-network
+    # configure your tests to use Selenium Grid at
+    # selenium__standalone-chrome:4444
+    - npm test
+  artifacts:
+    when: always
+    paths:
+      - target
+      
 test:
   script:
     - yarn install
