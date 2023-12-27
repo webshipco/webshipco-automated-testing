@@ -11,9 +11,8 @@ deploy_terraform:
     - echo
   environment: production
   
-e2e:chrome:
-  stage: confidence-check
-  services:
+e2e:
+services:
   seleniumhub:
     container_name: seleniumhub
     image: selenium/hub
