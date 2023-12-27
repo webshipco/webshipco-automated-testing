@@ -2,19 +2,39 @@ default:
   image: node:18
 
 stages:
-  - deploy
-  - confidence-check
-deploy_terraform:
-  stage: deploy
+  - setup
+  - test
+
+check:
+  stage: setup
   script:
-    # Your Review App deployment scripts - for a working example please check https://gitlab.com/Flockademic/Flockademic/blob/5a45f1c2412e93810fab50e2dab8949e2d0633c7/.gitlab-ci.yml#L315
-    - echo
-  environment: production
-  
-e2e:chrome:
-  stage: confidence-check
-  services:
-    - selenium/standalone-chrome
-  script:
+    # Install Node.js and yarn
+    - apt-get update -qy
+    - apt-get install -y nodejs yarn
+
+    # Install Google Chrome and Chromedriver
+    - apt-get install -y wget unzip
+    - wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - dpkg -i google-chrome*.deb
+    - apt-get -f install -y
+    - CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+    - wget -q https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+    - unzip chromedriver_linux64.zip
+    - mv chromedriver /usr/local/bin/
+    - chmod +x /usr/local/bin/chromedriver
+
+    # Install dependencies and run Webpack
     - yarn install
+    - yarn start
     - yarn test
+
+    # Show the logs for the GitLab Selenium Server service
+    - mkdir -p selenium/ && curl -s http://localhost:8080/logs.tar.gz | tar -xvzf - -C selenium/
+    - mkdir -p selenium/ && curl http://localhost:8080/server-log --output selenium/server-log.txt
+  artifacts:
+    when: always
+    paths:
+      - selenium/
+  variables:
+    SELENIUM_REMOTE_URL: http://localhost:8080
+    GITLAB_TARGET_SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
