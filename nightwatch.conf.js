@@ -81,8 +81,8 @@ module.exports = {
     extends: 'selenium_server',
     desiredCapabilities: {
       browserName: 'chrome',
+      start_process: true,
       chromeOptions: {
-        start_process: true,
         w3c: true,
       },
     },
