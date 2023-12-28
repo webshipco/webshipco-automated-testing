@@ -64,43 +64,49 @@ module.exports = {
     },
   },
 
-  selenium: {
+  selenium_server: {
     // Selenium Server is running locally and is managed by Nightwatch
     selenium: {
       start_process: true,
       port: 4444,
-      server_path: require('selenium-server').path,
+      server_path: (Services.seleniumServer ? Services.seleniumServer.path : ''),
       cli_args: {
-        'webdriver.gecko.driver': require('geckodriver').path,
-        'webdriver.chrome.driver': require('chromedriver').path,
-        'webdriver.ie.driver': process.platform === 'win32' ? require('iedriver').path : ''
-      }
+        'webdriver.gecko.driver': (Services.geckodriver ? Services.geckodriver.path : ''),
+        'webdriver.chrome.driver': (Services.chromedriver ? Services.chromedriver.path : ''),
+      },
     },
     webdriver: {
       start_process: false
     }
   },
-  
+
   'selenium.chrome': {
-    extends: 'selenium',
+    extends: 'selenium_server',
     desiredCapabilities: {
       browserName: 'chrome',
       chromeOptions: {
-      }
-    }
+        w3c: true,
+      },
+    },
   },
-  
-  'selenium.firefox': {
-    extends: 'selenium',
-    desiredCapabilities: {
-      browserName: 'firefox'
-    }
-  },
-  
   'selenium.ie': {
     extends: 'selenium',
     desiredCapabilities: {
       browserName: 'internet explorer'
     }
   }
+};
+
+function loadServices() {
+  try {
+    Services.seleniumServer = require('selenium-server');
+  } catch (err) { }
+
+  try {
+    Services.chromedriver = require('chromedriver');
+  } catch (err) { }
+
+  try {
+    Services.geckodriver = require('geckodriver');
+  } catch (err) { }
 }
