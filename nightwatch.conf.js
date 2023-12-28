@@ -23,19 +23,43 @@ module.exports = {
   test_settings: {
     default: {
       launch_url: 'https://webship.co',
-      start_process: false,
       selenium_port: 4444,
       selenium_host: '127.0.0.1',
-      silent: false,
+      silent: true,
       screenshots: {
-        enabled: false,
-        on_failure: true,
+        enabled: true,
         path: './reports/screenshots',
       },
 
       desiredCapabilities: {
         browserName: 'chrome',
-        loggingPrefs: { driver: 'INFO', server: 'OFF', browser: 'INFO' }
+        'goog:chromeOptions': {
+          // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
+          //
+          // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
+          w3c: false,
+          args: [
+            '--headless',
+            '--start-maximized',
+            '--disable-gpu',
+            '--window-size=1600,1200',
+            '--no-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-setuid-sandbox',
+            '--disable-web-security',
+            '--DNS-prefetch-disable',
+            '--disable-translate',
+            '--ignore-certificate-errors',
+            '--test-type',
+            '--disable-extensions',
+            '--incognito',
+            '--disable-infobars',
+            '--remote-debugging-port=9222',
+            '--allowed-ips=*',
+            '--whitelisted-ips=*',
+            '--allow-insecure-localhost',
+          ],
+        },
       },
     },
   },
@@ -43,7 +67,7 @@ module.exports = {
   selenium_server: {
     // Selenium Server is running locally and is managed by Nightwatch
     selenium: {
-      start_process: false,
+      start_process: true,
       port: 4444,
       server_path: (Services.seleniumServer ? Services.seleniumServer.path : ''),
       cli_args: {
