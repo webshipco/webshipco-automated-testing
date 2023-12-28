@@ -11,16 +11,6 @@ module.exports = {
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
   custom_assertions_path: ['./node_modules/webship-js/lib/custom-assertions','./lib/custom-assertions'],
 
-  webdriver: {
-    start_process: true,
-    port: 4444,
-    server_path: require('chromedriver').path,
-    cli_args: [
-      // very verbose geckodriver logs
-      // '-vv'
-    ]
-  },
-
   test_runner: {
     type: 'cucumber',
     options: {
@@ -74,17 +64,21 @@ module.exports = {
     },
   },
 
-  selenium_server: {
+  selenium: {
     // Selenium Server is running locally and is managed by Nightwatch
     selenium: {
       start_process: true,
       port: 4444,
-      server_path: (Services.seleniumServer ? Services.seleniumServer.path : ''),
+      server_path: require('selenium-server').path,
       cli_args: {
-        'webdriver.gecko.driver': (Services.geckodriver ? Services.geckodriver.path : ''),
-        'webdriver.chrome.driver': (Services.chromedriver ? Services.chromedriver.path : ''),
-      },
+        'webdriver.gecko.driver': require('geckodriver').path,
+        'webdriver.chrome.driver': require('chromedriver').path,
+        'webdriver.ie.driver': process.platform === 'win32' ? require('iedriver').path : ''
+      }
     },
+    webdriver: {
+      start_process: false
+    }
   },
 
   'selenium.chrome': {
