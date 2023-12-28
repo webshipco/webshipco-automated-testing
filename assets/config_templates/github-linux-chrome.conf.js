@@ -81,11 +81,11 @@ module.exports = {
   },
 
   'selenium.chrome': {
-    extends: 'selenium_server',
+    extends: 'selenium',
     desiredCapabilities: {
       browserName: 'chrome',
       chromeOptions: {
-        w3c: true,
+        w3c: false,
       },
     },
   },
