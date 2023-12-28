@@ -32,7 +32,7 @@ const parser = new ArgumentParser({
 parser.add_argument('-ci', '--continuous_integration',
   {
     help: 'Add your CI services (circleci, github, gitlab, bitbucket), By default: -ci circleci',
-    default: 'github',
+    default: 'circleci',
   });
 
 parser.add_argument('-b', '--browser',
