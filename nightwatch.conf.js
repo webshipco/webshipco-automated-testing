@@ -89,12 +89,6 @@ module.exports = {
         w3c: false,
       },
     },
-  },
-  'selenium.ie': {
-    extends: 'selenium',
-    desiredCapabilities: {
-      browserName: 'internet explorer'
-    }
   }
 };
 
