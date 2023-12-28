@@ -77,7 +77,7 @@ module.exports = {
   selenium_server: {
     // Selenium Server is running locally and is managed by Nightwatch
     selenium: {
-      start_process: true,
+      start_process: false,
       port: 4444,
       server_path: (Services.seleniumServer ? Services.seleniumServer.path : ''),
       cli_args: {

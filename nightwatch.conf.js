@@ -23,9 +23,9 @@ module.exports = {
   test_settings: {
     default: {
       launch_url: 'https://webship.co',
+      start_process: false,
       selenium_port: 4444,
       selenium_host: '127.0.0.1',
-      start_process: true,
       silent: false,
       screenshots: {
         enabled: false,
@@ -43,7 +43,7 @@ module.exports = {
   selenium_server: {
     // Selenium Server is running locally and is managed by Nightwatch
     selenium: {
-      start_process: true,
+      start_process: false,
       port: 4444,
       server_path: (Services.seleniumServer ? Services.seleniumServer.path : ''),
       cli_args: {
