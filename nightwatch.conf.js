@@ -67,7 +67,7 @@ module.exports = {
   selenium_server: {
     // Selenium Server is running locally and is managed by Nightwatch
     selenium: {
-      start_process: false,
+      start_process: true,
       port: 4444,
       server_path: (Services.seleniumServer ? Services.seleniumServer.path : ''),
       cli_args: {
@@ -82,7 +82,7 @@ module.exports = {
     desiredCapabilities: {
       browserName: 'chrome',
       chromeOptions: {
-        w3c: true,
+        w3c: false,
       },
     },
   }
