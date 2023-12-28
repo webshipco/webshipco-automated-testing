@@ -82,7 +82,8 @@ module.exports = {
     desiredCapabilities: {
       browserName: 'chrome',
       chromeOptions: {
-        w3c: false,
+        start_process: true,
+        w3c: true,
       },
     },
   }
