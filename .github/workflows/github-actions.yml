@@ -42,7 +42,7 @@ jobs:
 
       - name: Run Selenium Standalone server
         run: |
-          wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.1.0/selenium-server-4.1.2.jar; fi
+          wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.1.0/selenium-server-4.1.2.jar
           java -jar selenium-server-4.1.2.jar standalone
 
       - name: Install
