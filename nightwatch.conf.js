@@ -10,10 +10,6 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
   custom_assertions_path: ['./node_modules/webship-js/lib/custom-assertions','./lib/custom-assertions'],
-
-  webdriver: {
-    start_process: false
-  },
   
   test_runner: {
     type: 'cucumber',
@@ -79,13 +75,16 @@ module.exports = {
         'webdriver.chrome.driver': (Services.chromedriver ? Services.chromedriver.path : ''),
       },
     },
+
+    webdriver: {
+      start_process: false
+    },
   },
 
   'selenium.chrome': {
     extends: 'selenium',
     desiredCapabilities: {
       browserName: 'chrome',
-      start_process: true,
       chromeOptions: {
         w3c: false,
       },
