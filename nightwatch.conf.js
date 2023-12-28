@@ -26,41 +26,16 @@ module.exports = {
       selenium_port: 4444,
       selenium_host: '127.0.0.1',
       start_process: true,
-      silent: true,
+      silent: false,
       screenshots: {
-        enabled: true,
+        enabled: false,
+        on_failure: true,
         path: './reports/screenshots',
       },
 
       desiredCapabilities: {
         browserName: 'chrome',
-        'goog:chromeOptions': {
-          // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
-          //
-          // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
-          w3c: false,
-          args: [
-            '--headless',
-            '--start-maximized',
-            '--disable-gpu',
-            '--window-size=1600,1200',
-            '--no-sandbox',
-            '--disable-dev-shm-usage',
-            '--disable-setuid-sandbox',
-            '--disable-web-security',
-            '--DNS-prefetch-disable',
-            '--disable-translate',
-            '--ignore-certificate-errors',
-            '--test-type',
-            '--disable-extensions',
-            '--incognito',
-            '--disable-infobars',
-            '--remote-debugging-port=9222',
-            '--allowed-ips=*',
-            '--whitelisted-ips=*',
-            '--allow-insecure-localhost',
-          ],
-        },
+        loggingPrefs: { driver: 'INFO', server: 'OFF', browser: 'INFO' }
       },
     },
   },
