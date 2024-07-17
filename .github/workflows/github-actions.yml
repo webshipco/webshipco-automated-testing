@@ -7,10 +7,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      TEST_BASE_URL: http://webship.co
-      SELENIUM_HOST: http://localhost:4444/wd/hub
-
     steps:
       - name: Install Chrome browser
         run: |
