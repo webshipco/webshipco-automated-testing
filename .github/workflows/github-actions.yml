@@ -9,6 +9,7 @@ jobs:
 
     env:
       TEST_BASE_URL: http://webship.co
+      SELENIUM_HOST: http://localhost:4444/wd/hub
 
     steps:
       - name: Install Chrome browser
@@ -55,6 +56,11 @@ jobs:
 
       - name: Configure nightwatch.conf.js for Github
         run: node webship-init -ci circleci -os linux -b chrome
+
+      - name: Start virtual server
+        run: |
+          export NODE_OPTIONS=--openssl-legacy-provider
+          yarn start &
 
       - name: Test
         run: yarn test
