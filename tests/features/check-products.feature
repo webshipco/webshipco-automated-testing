@@ -18,8 +18,8 @@ Feature: Check the products page
 
   Scenario: Check Webship
     Given I am on "/products"
-     When I click "Webship"
-     Then I should see "Webships"
+     When I click "Webship Portal"
+     Then I should see "Webship Portal"
       And I should see "The Webship.co portal site was built on top of Drupal"
 
   Scenario: Check Cucumber
