@@ -4,14 +4,14 @@ on: [push]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     env:
-      TEST_BASE_URL: http://localhost:8080
-      SELENIUM_HOST: http://localhost:4444/wd/hub
+      TEST_BASE_URL: http://webship.co
 
     steps:
-      - name: Install/Update Google Chrome browser
+      - name: Install Chrome browser
         run: |
           sudo apt install libu2f-udev
             sudo apt-get install libappindicator1 fonts-liberation libgbm1 libgtk-3-0 xdg-utils
@@ -34,26 +34,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-
+      
       - name: Install Java
         run: |
           sudo apt update
           sudo apt install -y openjdk-11-jre openjdk-11-jre-headless openjdk-11-jdk openjdk-11-jdk-headless
 
+
       - name: Run Selenium Standalone server
         run: |
           wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.4.0/selenium-server-4.4.0.jar
           nohup java -jar selenium-server-4.4.0.jar standalone > selenium.log 2>&1 & 
-         
-
-      - name: Install dependencies
+        
+      - name: Install
         run: yarn install
 
-      - name: Configure nightwatch.conf.js for GitHub
+      - name: Configure nightwatch.conf.js for Github
         run: node webship-init -ci circleci -os linux -b chrome
 
       - name: Start virtual server
@@ -61,5 +61,5 @@ jobs:
           export NODE_OPTIONS=--openssl-legacy-provider
           yarn start &
 
-      - name: Run tests
+      - name: Test
         run: yarn test
