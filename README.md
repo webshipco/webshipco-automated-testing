@@ -1,3 +1,4 @@
 [![Github Actions](https://github.com/webshipco/webshipco-automated-testing/actions/workflows/github-actions.yml/badge.svg?branch=main)](https://github.com/webshipco/webshipco-automated-testing/actions)
+[![Gitlab CI](https://gitlab.com/webshipco/webshipco-automated-testing/badges/main/pipeline.svg?job=karma&key_text=Gitlab+CI&key_width=60)](https://gitlab.com/webshipco/webshipco-automated-testing/-/pipelines)
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/webshipco/webshipco-automated-testing/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/webshipco/webshipco-automated-testing/tree/main)
 # Webship.co Automated Testing
