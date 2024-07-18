@@ -18,7 +18,7 @@ Feature: Check the Services page
 
   Scenario: Check the link
     Given I am on "/services"
-     When I click "contactus"
+     When I click "Contact Us"
      Then I should see "Contact"
      When I move backward one page
       And I wait max of 3 seconds
