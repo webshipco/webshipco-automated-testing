@@ -1,4 +1,4 @@
-import { Then } from '@cucumber/cucumber';
+const {Then} = require('@cucumber/cucumber');
 
 /**
 * Verify, that current page header is working
