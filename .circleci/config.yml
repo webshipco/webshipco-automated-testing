@@ -27,8 +27,8 @@ commands:
       - run:
           name: Install node js
           command: |
-            curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -
-            sudo apt install -y nodejs 
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+            vm install 22 
             sudo npm install -g yarn
       ## Install Java.
       - run:

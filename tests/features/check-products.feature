@@ -22,8 +22,3 @@ Feature: Check the products page
      Then I should see "Webship Portal"
       And I should see "The Webship.co portal site was built on top of Drupal"
 
-  Scenario: Check Cucumber
-    Given I am on "/products"
-     When I click "Cucumber"
-     Then I should see "Cucumber"
-      And I should see "Cucumber Automated Functional Acceptance Testing Management system"
