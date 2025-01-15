@@ -28,7 +28,7 @@ commands:
           name: Install node js
           command: |
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-            vm install 22 
+            nvm install 22 
             sudo npm install -g yarn
       ## Install Java.
       - run:
