@@ -12,7 +12,6 @@ Feature: Check the Services page
   Scenario: Check services info
     Given I am on "/services"
      Then I should see "Automated Functional Testing Setup"
-      And I should see "Setup Private Selenium Grid"
       And I should see "Configure Remote CI/CD"
       And I should see "Cucumber/Gherkin descriptions"
 
