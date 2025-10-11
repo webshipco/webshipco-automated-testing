@@ -59,7 +59,7 @@ module.exports = {
             '--allowed-ips=*',
             '--whitelisted-ips=*',
             '--allow-insecure-localhost',
-            '--user-data-dir=/tmp/chrome-$$'
+            '--user-data-dir=/tmp/chrome-profile-$$'
           ],
         },
       },
