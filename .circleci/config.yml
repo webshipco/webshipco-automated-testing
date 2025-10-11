@@ -79,12 +79,14 @@ jobs:
       - webship-js-build
       ## Automated Functional Acceptance Testing
       - run:
-          name: Clean Chrome temp data
-          command: rm -rf /tmp/chrome* /tmp/.com.google.Chrome* || true
-      - run:
           name: Install yarn
           command: |
             yarn install
+      - run:
+          name: Clean Chrome temp data
+          command: |
+            echo "Cleaning up old Chrome profiles..."
+            rm -rf /tmp/chrome* /tmp/.com.google.Chrome* || true
       - run:
           name: Test
           command: |
