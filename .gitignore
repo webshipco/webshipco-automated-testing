@@ -2,3 +2,4 @@
 node_modules
 yarn.lock
 tests/reports
+package-lock.json
