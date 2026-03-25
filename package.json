@@ -10,6 +10,6 @@
     "test": "cucumber-js --config cucumber.js; node generate-reports.js;"
   },
   "dependencies": {
-    "webship-js": "^2.0.0-beta1"
+    "webship-js": "^2"
   }
 }
