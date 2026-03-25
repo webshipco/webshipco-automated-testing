@@ -25,7 +25,7 @@ interface PlaywrightConfig {
 const config: PlaywrightConfig = {
   browser,
   launchOptions: {
-    headless: false,
+    headless: true,
     slowMo: 300,
     args: browser === 'chromium' ? chromiumArgs : [],
   },
