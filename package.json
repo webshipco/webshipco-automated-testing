@@ -1,18 +1,15 @@
 {
-  "name": "webshipco-automated-testing",
+  "name": "webshipco",
   "version": "1.0.0",
-  "description": "webship.co automated testing",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
   "main": "index.js",
-  "author": "Webship.co",
-  "license": "MIT",
-  "private": false,
   "scripts": {
-    "confidence-check": "wdio run wdio.conf.js",
-    "test": "nightwatch --format @cucumber/pretty-formatter --format-options '{\"colorsEnabled\": true}' --format-options '{\"theme\": {\"feature keyword\":[\"bold\",\"blue\"],\"feature name\":[\"blue\",\"underline\"],\"feature description\":[\"blueBright\"],\"scenario keyword\":[\"bold\",\"magenta\"],\"scenario name\":[\"magenta\",\"underline\"],\"step keyword\":[\"bold\",\"green\"],\"step text\":[\"greenBright\",\"italic\"]}}' --format json:./tests/reports/cucumber_report.json; node generate-reports.js;",
-    "lint:js": "node ./node_modules/eslint/bin/eslint.js --config=.eslintrc.json ."
+    "test": "cucumber-js --config cucumber.js; node generate-reports.js;"
   },
-  "homepage": "https://github.com/webship/webship-js",
   "dependencies": {
-    "webship-js": "~1"
+    "webship-js": "^2.0.0-beta1"
   }
 }

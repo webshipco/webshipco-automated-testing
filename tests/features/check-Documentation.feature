@@ -11,5 +11,5 @@ Feature: Check the documentation page
 
   Scenario: Check the box information
     Given I am on "/docs"
-     Then I should see "Webship JS"
-      And I should see "Integrations"
+     Then I should see "Webship JS 2.0.x "
+      And I should see "Webship JS 1.0.x"

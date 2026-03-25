@@ -12,8 +12,8 @@ Feature: Check the home page
   Scenario: Check newsletter in homepage
     Given I am on the homepage
      When I fill in "Email" with "wspowage5@gmail.com"
-      And I press "Subscribe"
+      And I press "Submit"
       And I wait max of 3 seconds
-      And I click "Privacy Policy"
+      And I click "Privacy"
       And I wait max of 3 seconds
      Then I should see "Privacy Policy"
