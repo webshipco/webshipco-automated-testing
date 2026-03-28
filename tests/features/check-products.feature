@@ -7,8 +7,7 @@ Feature: Check the products page
     Given I am on "/products"
      Then I should see "Products"
       And I should see "Webship-js"
-      And I should see "Webship"
-      And I should see "Cucumber"
+      And I should see "Webship-portal"
 
   Scenario: Check Webship-js
     Given I am on "/products"
