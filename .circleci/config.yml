@@ -2,9 +2,6 @@ version: 2.1
 defaults: &defaults
   docker:
     - image: cimg/base:stable-20.04
-      auth:
-        username: mydockerhub-user
-        password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
   environment:
     FORCE_COLOR: "1"
 commands:
@@ -29,36 +26,35 @@ commands:
 jobs:
   webship-js-testing:
     <<: *defaults
+    resource_class: medium
     steps:
       - webship-js-build
+      ## Restore npm cache
+      - restore_cache:
+          keys:
+            - node-deps-{{ checksum "package-lock.json" }}
+            - node-deps-
       ## Install npm dependencies
       - run:
           name: Install npm dependencies
           command: |
             npm install
+      ## Save npm cache
+      - save_cache:
+          key: node-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
       ## Install Playwright browsers
       - run:
           name: Install Playwright browsers
           command: |
             npx playwright install --with-deps chromium
       - run:
-          name: Start virtual server
-          command: npm start
-          background: true
-      - run:
-          name: Wait for server
-          command: sleep 3
-      - run:
-          name: Test
+          name: Run tests
           command: |
             npm test
 workflows:
   version: 2
   webship-js-workflow:
     jobs:
-      - webship-js-testing:
-          filters:
-            tags:
-              only: /^2.0.*/
-            branches:
-              only: /^2.0.x/
+      - webship-js-testing
