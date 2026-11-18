@@ -1,8 +1,19 @@
 {
   "css": {
+    "main menu": "#header-nav",
+    "menu button": "button[data-drupal-selector='mobile-nav-button']",
+    "menu overlay": "[data-drupal-selector='header-nav-overlay']",
     "latest Webship-js release": "a[href^='/products/webship-js/releases/']",
     "latest Workspace release": "a[href^='/products/webship-workspace/releases/']",
-    "latest book release": "a[href^='/products/book-automated-functional-testing-recipes/releases/']"
+    "latest book release": "a[href^='/products/book-automated-functional-testing-recipes/releases/']",
+    "docs sidebar": "#docs-sidebar",
+    "docs cards": ".docs-cards",
+    "footer menu": "footer nav.menu--footer",
+    "footer Privacy link": "footer nav.menu--footer a[href$='/privacy-policy']",
+    "footer About us link": "footer nav.menu--footer a[href$='/about-us']",
+    "footer Contact link": "footer nav.menu--footer a[href$='/contact']",
+    "social links": "footer nav.menu--social-media-menu",
+    "testing badge": "footer img[src*='/webshipco-automated-testing/actions/workflows/']"
   },
   "xpath": {}
 }
