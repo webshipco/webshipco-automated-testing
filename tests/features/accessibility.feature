@@ -26,15 +26,13 @@ Feature: Accessibility of the main pages
 
   @known-issue
   Scenario Outline: <page> passes the WCAG 2.2 AA audit of axe
-    Every main page fails it today (found on 2026-11-18): too little
-    contrast on every page, the copyright line of the footer and, on the
-    documentation page, 168 elements (color-contrast, serious); pictures
-    without alt text on every page but the privacy policy, the picture of
-    the "Boost your site's success" block and pictures in the text
-    (image-alt, critical); a code block of the documentation that the
-    keyboard cannot scroll (scrollable-region-focusable, serious); links in
-    the text of the privacy policy told apart by colour alone
-    (link-in-text-block, serious).
+    Every main page fails it today on colours alone: the copyright line of
+    the footer (white on the footer blue, 3.55:1), the link blue (4.29:1)
+    and the grey of the documentation (4.37:1) are under 4.5:1
+    (color-contrast, serious), and links in the text of the privacy policy
+    are told apart by colour alone (link-in-text-block, serious). Fixed on
+    2026-11-18: the alt text of the pictures, the colours of the code blocks
+    and the keyboard reaching a code block that scrolls.
 
     Given I am on "<path>"
     Then the page should pass an accessibility audit at level "AA"

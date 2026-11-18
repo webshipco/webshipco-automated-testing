@@ -27,11 +27,10 @@ Feature: Home page
     When I fill in "Email" with "visitor@example.com"
     Then the field "Email" should pass the browser's validation
 
-  @known-issue
-  Scenario: The pictures of the latest blog posts open the posts
-    The picture of each of the latest posts links to /media/<id>/edit, the
-    form that edits the picture, which answers 403 to a visitor (found on
-    2026-11-18). The picture should open the post, as its title does.
+  Scenario: The pictures of the latest blog posts do not link to the picture's edit form
+    Each of the latest posts opens from its title. Until 2026-11-18 its
+    picture linked to /media/<id>/edit, the form that edits the picture,
+    which answers 403 to a visitor; the picture is no longer a link.
 
     Given I am on the homepage
     Then "main a[href*='/media/'][href$='/edit']" should have a count of 0

@@ -5,7 +5,7 @@
 // no step names a site or a platform, so any of them can be copied into a
 // suite for another site.
 
-const { Before, Then } = require('@cucumber/cucumber');
+const { Before, When, Then } = require('@cucumber/cucumber');
 const assert = require('assert');
 
 // The visits of this suite are not visitors. Google Analytics gets an empty
@@ -109,4 +109,47 @@ Then(/^the images in "([^"]*)" should be loaded$/, async function (nameOrSelecto
     if (!loaded) broken.push(await image.getAttribute('src'));
   }
   assert.deepStrictEqual(broken, [], `${broken.length} of the ${count} images in "${nameOrSelector}" did not load: ${broken.join(', ')}`);
+});
+
+/**
+ * Tap an element where another one does not cover it: the overlay beside an
+ * open menu, the backdrop around a dialog. A click on the middle of the
+ * element would reach whatever lies on top of it there; this taps the first
+ * point of the element, from its edges inwards, that the page answers with
+ * the element itself (or something inside it).
+ *
+ * Example #1: When I tap menu overlay beside main menu
+ * Example #2: When I tap "#backdrop" beside ".dialog"
+ */
+When(/^I tap (?:on )?"?([^"]+?)"? beside "?([^"]+?)"?$/, async function (nameOrSelector, otherNameOrSelector) {
+  const selector = selectorOf(this, nameOrSelector);
+  const other = selectorOf(this, otherNameOrSelector);
+  const target = this.page.locator(selector).first();
+  await target.waitFor({ state: 'visible', timeout: 10000 });
+  const point = await target.evaluate((element, otherSelector) => {
+    const box = element.getBoundingClientRect();
+    const covers = document.querySelector(otherSelector);
+    const inside = (x, y) => {
+      if (covers) {
+        const r = covers.getBoundingClientRect();
+        if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
+          return false;
+        }
+      }
+      const hit = document.elementFromPoint(x, y);
+      return hit === element || element.contains(hit);
+    };
+    const right = Math.min(box.right, window.innerWidth) - 1;
+    const bottom = Math.min(box.bottom, window.innerHeight) - 1;
+    const left = Math.max(box.left, 0) + 1;
+    const top = Math.max(box.top, 0) + 1;
+    const middleY = (top + bottom) / 2;
+    const middleX = (left + right) / 2;
+    const candidates = [[left + 10, middleY], [right - 10, middleY], [middleX, bottom - 10], [middleX, top + 10],
+      [left + 10, top + 10], [right - 10, top + 10], [left + 10, bottom - 10], [right - 10, bottom - 10]];
+    const found = candidates.find(([x, y]) => inside(x, y));
+    return found ? { x: found[0], y: found[1] } : null;
+  }, other);
+  assert.ok(point, `No point of "${nameOrSelector}" is free of "${otherNameOrSelector}" to tap.`);
+  await this.page.mouse.click(point.x, point.y);
 });
