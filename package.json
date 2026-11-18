@@ -1,15 +1,27 @@
 {
-  "name": "webshipco",
-  "version": "1.0.0",
-  "description": "",
+  "name": "webshipco-automated-testing",
+  "version": "2.0.0",
+  "description": "A public example of testing a real Drupal site, https://webship.co, as an anonymous visitor with webship-js and @webship-js/drupal-core-steps.",
+  "private": true,
   "license": "ISC",
-  "author": "",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "cucumber-js --config cucumber.js; node generate-reports.js;"
+  "author": "Webship.co",
+  "homepage": "https://github.com/webshipco/webshipco-automated-testing",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webshipco/webshipco-automated-testing.git"
   },
-  "dependencies": {
-    "webship-js": "^2"
+  "engines": {
+    "node": ">= 20.0"
+  },
+  "scripts": {
+    "test": "cucumber-js --config cucumber.js",
+    "test:dry-run": "cucumber-js --config cucumber.js --dry-run",
+    "test:known-issues": "CUCUMBER_TAGS=@known-issue cucumber-js --config cucumber.js",
+    "test:headed": "HEADLESS=false cucumber-js --config cucumber.js",
+    "generate-reports": "generate-reports"
+  },
+  "devDependencies": {
+    "@webship-js/drupal-core-steps": "^2.2.3",
+    "webship-js": "^2.0.12"
   }
 }

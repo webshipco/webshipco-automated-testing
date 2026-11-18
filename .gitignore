@@ -1,5 +1,9 @@
-# Tests
-node_modules
-yarn.lock
-tests/reports
-package-lock.json
+# Dependencies
+node_modules/
+
+# What a run writes: reports, screenshots of failures, videos
+tests/reports/*
+!tests/reports/README.md
+tests/screenshots/
+tests/videos/
+test-results/
