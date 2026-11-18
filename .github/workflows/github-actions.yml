@@ -1,35 +1,67 @@
+# The file keeps its name: the footer of https://webship.co shows the badge
+# of this workflow (actions/workflows/github-actions.yml/badge.svg).
 name: Github Actions
 
-on: [push]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+  schedule:
+    # Once a week, on Monday at 05:17 UTC: a live site is tested gently.
+    - cron: '17 5 * * 1'
+
+permissions:
+  contents: read
+
+# One run at a time against the live site: a run waits for the one before
+# it instead of running beside it.
+concurrency:
+  group: live-site
+  cancel-in-progress: false
 
 jobs:
-  build:
+  test:
+    name: webship-js on webship.co
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     env:
-      TEST_BASE_URL: http://localhost:8080
       FORCE_COLOR: "1"
+      LAUNCH_URL: https://webship.co
+      # No pause between browser actions: nobody watches a CI run.
+      SLOW_MO: "0"
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
         with:
-          node-version: '20.x'
+          node-version: '24.x'
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Start virtual server
-        run: npm start &
-
-      - name: Wait for server
-        run: sleep 3
+      - name: Check for undefined and ambiguous steps
+        run: npm run test:dry-run
 
       - name: Run tests
         run: npm test
+
+      - name: Keep the reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: webship-js-reports
+          path: |
+            tests/reports/
+            tests/screenshots/
+          if-no-files-found: ignore
+          retention-days: 14
