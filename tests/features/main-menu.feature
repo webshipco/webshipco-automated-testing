@@ -39,15 +39,12 @@ Feature: Main menu on a desktop
       | Blog     | Blog          | /blog     |
       | Contact  | Contact       | /contact  |
 
-  @known-issue
   Scenario: The main menu of the privacy policy links to the address of each page
-    A request to /index%2Ephp/<page> (an encoded "index.php/") renders the
-    links of the page's blocks with that prefix, and the cache keeps them for
-    every visitor of <page>. On 2026-11-18 the main menu of the privacy
-    policy links to /index%2ephp/products, /index%2ephp/docs and the others;
-    the footer and the logo had such links the same morning. A redirect of
-    /index.php/ and /index%2Ephp/ addresses to the address of the page keeps
-    them out of the cache.
+    A request to /index%2Ephp/<page> (an encoded "index.php/") once rendered
+    the links of the page's blocks with that prefix, and the cache kept them
+    for every visitor: on 2026-11-18 the main menu of the privacy policy
+    linked to /index%2ephp/products and the others. The site now redirects
+    such addresses to the address of the page, so no prefixed link is cached.
 
     Given I am on "/privacy-policy"
     Then "#header-nav a[href^='/index']" should have a count of 0

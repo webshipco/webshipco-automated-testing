@@ -39,12 +39,12 @@ Feature: Cookie consent
     Then a cookie with the name "klaro" and a value containing "%22ga%22%3Afalse" should exist
     And a cookie with the name "klaro" and a value containing "%22youtube%22%3Afalse" should exist
 
-  @known-issue @analytics
+  @analytics
   Scenario: No analytics cookie is set before the visitor chooses
     The consent manager lists Google Analytics as off until the visitor turns
-    it on, but the page loads Google Analytics on every visit whatever the
-    choice: the gtag script is not held back by the consent manager, and the
-    _ga cookies are set on the first page (found on 2026-11-18).
+    it on, and holds its script back until then: no _ga cookie on the first
+    page. (Until 2026-11-18 the page loaded Google Analytics whatever the
+    choice.)
 
     Given I am on the homepage
     When I wait until the network is idle

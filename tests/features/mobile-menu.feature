@@ -38,19 +38,16 @@ Feature: Main menu on a phone
     And the path should be "/docs"
     And I don't see main menu
 
-  @known-issue
   Scenario: A tap beside the open menu closes it
     On a screen wider than the menu (a tablet) the page shows beside the open
-    menu, behind an overlay that closes the menu when tapped. The overlay has
-    no style: the page template names it "overlay" while the theme's style
-    sheet styles "header-nav-overlay", so it is a static block 0 px high at
-    the bottom of the page and a tap beside the menu leaves it open (found on
-    2026-11-18).
+    menu, behind an overlay that closes the menu when tapped. The tap goes
+    beside the menu: the middle of the overlay lies under the menu itself.
+    (The overlay had no size until 2026-11-18.)
 
     Given I am viewing the site on a "tablet" screen
     And I am on "/about-us"
     When I click on menu button
     Then I see visible main menu
     And I see visible menu overlay
-    When I click on menu overlay
+    When I tap menu overlay beside main menu
     Then I don't see main menu

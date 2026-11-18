@@ -104,7 +104,7 @@ The scenarios follow the practice of the book *Automated Functional Testing Reci
 
 - One scenario at a time: no parallel workers, and no retry that would hide a failure behind a second visit.
 - A fixed list of pages, no crawling; status codes, robots.txt and sitemap.xml are asked once each with a plain GET.
-- A link is followed only once its address is checked, so the suite never opens an `/index%2Ephp/` address (see the known issues).
+- A link is followed only once its address is checked, so the suite never opens an `/index%2Ephp/` address (see the main menu feature).
 - No form is sent; Google Analytics is not loaded.
 - The CI runs on a push or a pull request to `main`, by hand, and once a week; one run at a time.
 

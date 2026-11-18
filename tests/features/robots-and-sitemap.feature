@@ -23,11 +23,10 @@ Feature: robots.txt and sitemap.xml
     And the API response should contain "/docs/webship-js/2.0.x/api-steps</loc>"
     And the API response should contain "/blog/what-functional-testing</loc>"
 
-  @known-issue
   Scenario: sitemap.xml lists the main pages of the site
-    The sitemap lists the home page, the documentation and the blog posts,
-    but none of the products, the blog itself, Services, About us, Contact
-    and the privacy policy (found on 2026-11-18). Its addresses are those of
+    Besides the home page, the documentation and the blog posts, the sitemap
+    lists the products, the blog itself, Services, About us, Contact and the
+    privacy policy (since 2026-11-18). Its addresses are those of
     https://webship.co, the base URL the sitemap is built with.
 
     When I send a GET request to "/sitemap.xml"
