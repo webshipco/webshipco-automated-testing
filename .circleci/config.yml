@@ -1,60 +1,46 @@
-version: 2.1
-defaults: &defaults
-  docker:
-    - image: cimg/base:stable-20.04
-  environment:
-    FORCE_COLOR: "1"
-commands:
-  webship-js-build:
-    steps:
-      - checkout
-      ## Useful must have utils.
-      - run:
-          name: Useful must have utils
-          command: |
-            sudo apt -qq update
-            sudo apt -qqy upgrade
-            sudo apt -yqq install vim links lynx git diffutils htop curl wget p7zip-full unzip zip sed gcc g++ make libfreetype6-dev libaio1 libaio-dev libonig-dev libpng-dev
+# CircleCI: the suite against https://webship.co on every push: npm ci, the
+# Playwright Chromium, a dry run for undefined and ambiguous steps, then the
+# suite. Playwright 1.65 does not run on Ubuntu 20.04, so the job runs on the
+# Node.js 24 image.
 
-      ## Install node js, npm
-      - run:
-          name: Install node js
-          command: |
-            curl -sL https://deb.nodesource.com/setup_20.x | sudo bash -
-            sudo apt install -y nodejs
+version: 2.1
 
 jobs:
-  webship-js-testing:
-    <<: *defaults
+  webship-js:
+    docker:
+      - image: cimg/node:24.22
     resource_class: medium
+    environment:
+      FORCE_COLOR: "1"
+      LAUNCH_URL: https://webship.co
+      SLOW_MO: "0"
     steps:
-      - webship-js-build
-      ## Restore npm cache
+      - checkout
       - restore_cache:
           keys:
-            - node-deps-{{ checksum "package-lock.json" }}
-            - node-deps-
-      ## Install npm dependencies
+            - npm-{{ checksum "package-lock.json" }}
       - run:
-          name: Install npm dependencies
-          command: |
-            npm install
-      ## Save npm cache
+          name: Install dependencies
+          command: npm ci
       - save_cache:
-          key: node-deps-{{ checksum "package-lock.json" }}
+          key: npm-{{ checksum "package-lock.json" }}
           paths:
-            - node_modules
-      ## Install Playwright browsers
+            - ~/.npm
       - run:
           name: Install Playwright browsers
-          command: |
-            npx playwright install --with-deps chromium
+          command: npx playwright install --with-deps chromium
+      - run:
+          name: Check for undefined and ambiguous steps
+          command: npm run test:dry-run
       - run:
           name: Run tests
-          command: |
-            npm test
+          command: npm test
+      - store_artifacts:
+          path: tests/reports
+      - store_artifacts:
+          path: tests/screenshots
+
 workflows:
-  version: 2
-  webship-js-workflow:
+  push:
     jobs:
-      - webship-js-testing
+      - webship-js

@@ -4,9 +4,8 @@
     "module": "CommonJS",
     "strict": true,
     "esModuleInterop": true,
-    "types": ["node"]
-  },
-  "ts-node": {
-    "ignore": ["node_modules/(?!webship-js/)"]
+    "types": [
+      "node"
+    ]
   }
 }

@@ -1,0 +1,8 @@
+{
+  "css": {
+    "latest Webship-js release": "a[href^='/products/webship-js/releases/']",
+    "latest Workspace release": "a[href^='/products/webship-workspace/releases/']",
+    "latest book release": "a[href^='/products/book-automated-functional-testing-recipes/releases/']"
+  },
+  "xpath": {}
+}
