@@ -1,7 +1,8 @@
-# CircleCI: the suite against https://webship.co on every push: npm ci, the
-# Playwright Chromium, a dry run for undefined and ambiguous steps, then the
-# suite. Playwright 1.65 does not run on Ubuntu 20.04, so the job runs on the
-# Node.js 24 image.
+# CircleCI: runs only where this repository is followed by CircleCI. The
+# same commands as .github/workflows/github-actions.yml: a dry run for
+# undefined and ambiguous steps, then the suite against https://webship.co,
+# on every push to main. A weekly run is a scheduled pipeline of the project
+# (Project Settings > Triggers).
 
 version: 2.1
 
@@ -43,4 +44,7 @@ jobs:
 workflows:
   push:
     jobs:
-      - webship-js
+      - webship-js:
+          filters:
+            branches:
+              only: main
