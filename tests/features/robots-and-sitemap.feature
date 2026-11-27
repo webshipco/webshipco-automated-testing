@@ -14,8 +14,21 @@ Feature: robots.txt and sitemap.xml
     And the API response should contain "Disallow: /admin/"
     And the API response should contain "Disallow: /user/login"
 
-  Scenario: sitemap.xml lists the documentation and the blog posts
+  Scenario: sitemap.xml is an index of the sitemap's pages
+    The site has more addresses than one sitemap page holds (5,000), so
+    /sitemap.xml is a sitemap index that lists its pages (since 2026-11-27,
+    5,178 addresses on two pages).
+
     When I send a GET request to "/sitemap.xml"
+    Then the API response code should be 200
+    And the response header "content-type" should contain "xml"
+    And the API response should contain "<sitemapindex"
+    And the API response should contain "<loc>https://webship.co/sitemap.xml?page=1</loc>"
+
+  Scenario: sitemap.xml lists the documentation and the blog posts
+    The oldest addresses are on the first page of the sitemap.
+
+    When I send a GET request to "/sitemap.xml?page=1"
     Then the API response code should be 200
     And the response header "content-type" should contain "xml"
     And the API response should contain "<urlset"
@@ -27,9 +40,10 @@ Feature: robots.txt and sitemap.xml
     Besides the home page, the documentation and the blog posts, the sitemap
     lists the products, the blog itself, Services, About us, Contact and the
     privacy policy (since 2026-11-18). Its addresses are those of
-    https://webship.co, the base URL the sitemap is built with.
+    https://webship.co, the base URL the sitemap is built with. They are on
+    the first page of the sitemap.
 
-    When I send a GET request to "/sitemap.xml"
+    When I send a GET request to "/sitemap.xml?page=1"
     Then the API response code should be 200
     And the API response should contain "<loc>https://webship.co/products</loc>"
     And the API response should contain "<loc>https://webship.co/products/webship-js</loc>"
